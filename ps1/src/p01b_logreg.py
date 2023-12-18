@@ -44,9 +44,15 @@ class LogisticRegression(LinearModel):
         feature_num = x.shape[1]
         theta = np.zeros(feature_num)
         epsilon = 1e-5
+        count = 0
 
         # Newton's method
         while True:
+            count += 1
+
+            if count > self.max_iter:
+                break
+
             # Calculate the derivative of J(theta)
             derivative_theta = np.zeros(feature_num)
 
