@@ -1,2 +1,46 @@
 \begin{answer}
+	\\
+	Prove $\phi = \frac{1}{m} \sum_{i=1}^m 1\{y^{(i)} = 1\}$:
+	
+	\begin{align*}
+		\frac{\partial}{\partial \phi} \ell(\phi, \mu_0, \mu_1, \Sigma) & = \sum_{i = 1}^m \frac{\partial}{\partial \phi} (\ln p(x^{(i)} | y^{(i)}; \mu_{0}, \mu_1, \Sigma) + \ln p(y^{(i)}))\\
+		& = \sum_{i = 1}^m \frac{\partial}{\partial \phi} \ln p(y^{(i)})\\
+		& = \sum_{i = 1}^m \frac{y^{(i)} \phi^{y^{(i)} - 1} (1 - \phi)^{1 - y^{(i)}} - (1 - y^{(i)}) (1 - \phi)^{-y^{(i)}} \phi^{y^{(i)}}}{\phi^{y^{(i)}} (1 - \phi)^{1 - y^{(i)}}}\\
+		& = \sum_{i = 1}^m \left(\frac{y^{(i)}}{\phi} - \frac{1 - y^{(i)}}{1 - \phi}\right)\\
+		& = \sum_{i = 1}^m \frac{y^{(i)} - \phi}{\phi (1 - \phi)}\\
+		& = \frac{\sum_{i = 1}^m 1\{y^{(i)} = 1\} - m\phi}{\phi (1 - \phi)}\\
+		& = 0
+	\end{align*}
+	
+	Therefore $\phi = \frac{1}{m} \sum_{i = 1}^{m} 1\{y^{(i)} = 1\}$.
+	
+	Prove $\mu_{0} = \frac{\sum_{i=1}^m 1\{y^{(i)} = {0}\} x^{(i)}}{\sum_{i=1}^m 1\{y^{(i)} = {0}\}} \\$
+	
+	\begin{align*}
+		\frac{\partial}{\partial \mu_0} \ell(\phi, \mu_0, \mu_1, \Sigma) & = \sum_{i = 1}^m \frac{\partial}{\partial \mu_0} \ln p(x^{(i)} | y^{(i)}; \mu_{0}, \mu_1, \Sigma)\\
+		& = \sum_{i,y^{(i)} = 0} \frac{\partial}{\partial \mu_0} p(x^{(i)} | y^{(i)} = 0; \mu_{0}, \mu_1, \Sigma)\\
+		& = \sum_{i,y^{(i)} = 0} \frac{\partial}{\partial \mu_0} \ln \frac{1}{\sqrt{2\pi\Sigma}} \exp\left(-\frac{1}{2} \Sigma^{-1} (x^{(i)} - \mu_0)^2\right)\\
+		& = \sum_{i,y^{(i)} = 0} \frac{\partial}{\partial \mu_0} [-\frac{1}{2}\Sigma (x^{(i)} - \mu_0)^2 ] \\
+		& = \sum_{i,y^{(i)} = 0} \Sigma (x^{(i)} - \mu_0)\\
+		& = \Sigma \sum_{i = 1}^m 1\{y^{(i)} = 0\}(x^{(i)} - \mu_0)\\
+		& = 
+	\end{align*}
+	
+	Therefore $\mu_{0} = \frac{\sum_{i=1}^m 1\{y^{(i)} = {0}\} x^{(i)}}{\sum_{i=1}^m 1\{y^{(i)} = {0}\}}$.
+	
+	For $\mu_1$, it can be proved in the same approach.
+	
+	Prove $\Sigma = \frac{1}{m} \sum_{i=1}^m (x^{(i)} - \mu_{y^{(i)}}) (x^{(i)} - \mu_{y^{(i)}})^T$:
+	
+	$$
+	\begin{aligned}
+		\frac{\partial}{\partial\Sigma} \ell(\phi, \mu_0, \mu_1, \Sigma) & = \sum_{i = 1}^m \frac{\partial}{\partial\Sigma} \ln\frac{1}{\sqrt{2\pi\Sigma}} \exp\left(-\frac{(x^{(i)} - \mu_{y^{(i)}})^2}{2\Sigma}\right)\\
+		& = \sum_{i = 1}^m \frac{\partial}{\partial\Sigma} \left[\ln\frac{1}{\sqrt{2\pi}} - \frac{1}{2}\ln\Sigma - \frac{(x^{(i)} - \mu_{y^{(i)}})^2}{2\Sigma} \right]\\
+		& = \sum_{i = 1}^m \frac{-\Sigma + (x^{(i)} - \mu_{y^{(i)}})^2}{2\Sigma^2}\\
+		& = 0
+	\end{aligned}
+	$$
+	
+	Therefore $\Sigma = \frac{1}{m} \sum_{i=1}^m (x^{(i)} - \mu_{y^{(i)}})^2 = \frac{1}{m} \sum_{i=1}^m (x^{(i)} - \mu_{y^{(i)}}) (x^{(i)} - \mu_{y^{(i)}})^T$
+	
 \end{answer}

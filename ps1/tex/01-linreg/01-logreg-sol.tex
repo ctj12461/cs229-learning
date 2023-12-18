@@ -1,2 +1,35 @@
 \begin{answer}
+	\\
+    Take the first derivative of $J(\theta)$ with respect to $\theta_j$:
+    
+    $$
+    \frac{\partial}{\partial \theta_j} J(\theta) = \frac{1}{m}\sum_{i = 1}^m (g(\theta^T x^{(i)}) - y^{(i)})x_j^{(i)}
+    $$.
+    
+    Take the second derivative of $J(\theta)$ with respect to $\theta_j$:
+
+    $$
+    \frac{\partial^2}{\partial \theta_j \partial \theta_k} J(\theta) = \frac{1}{m}\sum_{i = 1}^m x_j^{(i)} x_k^{(i)} g(\theta^T x^{(i)}) (1 - g(\theta^T x^{(i)}))
+    $$.
+    
+    Therefore
+    
+    $$
+    H_{jk} = \frac{1}{m}\sum_{i = 1}^m x_j^{(i)} x_k^{(i)} g(\theta^T x^{(i)}) (1 - g(\theta^T x^{(i)}))
+    $$
+    
+    \begin{align*}
+    	z^T H z & = \sum_{j = 1}^n \sum_{k = 1}^n H_{jk} z_j z_k\\
+    		& = \sum_{j = 1}^n \sum_{k = 1}^n \frac{1}{m}\sum_{i = 1}^m x_j^{(i)} x_k^{(i)} g(\theta^T x^{(i)}) (1 - g(\theta^T x^{(i)})) z_j z_k\\
+    		& = \frac{1}{m}\sum_{i = 1}^m g(\theta^T x^{(i)}) (1 - g(\theta^T x^{(i)})) \sum_{j = 1}^n \sum_{k = 1}^n x_j^{(i)} x_k^{(i)} z_j z_k
+    \end{align*},
+    
+    \begin{align*}
+    	\sum_{j = 1}^n \sum_{k = 1}^n x_j^{(i)} x_k^{(i)} z_j z_k & = \sum_{j = 1}^n x_j^{(i)} z_j \sum_{k = 1}^n  x_k^{(i)} z_k\\
+    		& = (z^T x^{(i)}) (z^T x^{(i)})\\
+    		& = (z^T x^{(i)})^2 \ge 0
+    \end{align*},
+    
+    and $g(z) = \frac{1}{1 + e^{-z}} \in (0, 1)$.\\
+    Therfore $z^T H z \ge 0$，即 $H\succeq 0$
 \end{answer}
