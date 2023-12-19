@@ -1,2 +1,21 @@
 \begin{answer}
+	$$
+	\begin{aligned}
+		\ell(\theta) &= \ln\prod_{i = 1}^m p(y^{(i)}| x^{(i)}; \theta)\\
+		& = \sum_{i = 1}^m\ln \frac{e^{-\lambda}\lambda^{y^{(i)}}}{y^{(i)}!}\\
+		& = \sum_{i = 1}^m (-\lambda + y^{(i)}\ln\lambda - \ln y^{(i)}!)\ (\lambda = e^\eta = e^{\theta^T x})\\
+		& = \sum_{i = 1}^m (-e^{\theta^T x^{(i)}} + y^{(i)}\theta^T x^{(i)}- \ln y^{(i)}!)\\
+	\end{aligned}
+	$$
+	
+	Take the partial derivative of $\ell(\theta)$ with respect to $\theta_j$:
+	
+	$$
+	\begin{aligned}
+		\frac{\partial}{\partial \theta_j} \ell(\theta) & = \sum_{i = 1}^m (-e^{\theta^T x^{(i)}} x^{(i)}_j + x^{(i)}_j y^{(i)})\\
+		& = \sum_{i = 1}^m (y^{(i)} - g(\theta^T x^{(i)}))x ^{(i)}_j\\
+	\end{aligned}
+	$$
+	
+	So the update rule is $\theta := \theta + \alpha (y^{(i)} - g(\theta^T x^{(i)})) x^{(i)}$.
 \end{answer}
