@@ -22,7 +22,7 @@ def main(train_path, eval_path, pred_path):
     
     with open(pred_path, "w") as f:
         for x in x_eval:
-            output = model.predict(x)
+            output = np.round(model.predict(x))
             f.write(f"{output}\n")
     # *** END CODE HERE ***
 
@@ -58,7 +58,7 @@ class LogisticRegression(LinearModel):
 
             for j in range(feature_num):
                 for i in range(sample_num):
-                    h = 1 / (1 + math.exp(-np.matmul(theta, x[i])))
+                    h = 1 / (1 + np.exp(-np.matmul(theta, x[i])))
                     derivative_theta[j] += (h - y[i]) * x[i][j]
                 
                 derivative_theta[j] /= sample_num;
@@ -69,7 +69,7 @@ class LogisticRegression(LinearModel):
             for j in range(feature_num):
                 for k in range(j + 1):
                     for i in range(sample_num):
-                        h = 1 / (1 + math.exp(-np.matmul(theta, x[i])))
+                        h = 1 / (1 + np.exp(-np.matmul(theta, x[i])))
                         hessian_theta[j][k] += x[i][j] * x[i][k] * h * (1 - h)
                     
                     hessian_theta[j][k] /= sample_num
@@ -97,7 +97,5 @@ class LogisticRegression(LinearModel):
             Outputs of shape (m,).
         """
         # *** START CODE HERE ***
-        import math
-        h = 1 / (1 + math.exp(-np.matmul(self.theta, x)))
-        return float(round(h))
+        return 1 / (1 + np.exp(-x @ self.theta))
         # *** END CODE HERE ***

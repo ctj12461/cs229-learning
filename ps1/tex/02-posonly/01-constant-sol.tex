@@ -1,2 +1,23 @@
 \begin{answer}
+	\\
+	Given $p(t^{(i)} = 1 | y^{(i)} = 1) = 1$, we have
+	
+	$$
+	\begin{aligned}
+		p(y^{(i)} = 1, t^{(i)} = 1 | x^{(i)}) & = p(y^{(i)} = 1| x^{(i)}) p(t^{(i)} = 1 | y^{(i)} = 1, x^{(i)})\\
+		& = p(y^{(i)} = 1| x^{(i)})
+	\end{aligned}
+	$$
+	
+	Hence,
+	
+	$$
+	\begin{aligned}
+		p(y^{(i)} = 1| x^{(i)}) & = p(y^{(i)} = 1, t^{(i)} = 1 | x^{(i)})\\
+		& = p(t^{(i)} = 1 | x^{(i)}) p(y^{(i)} = 1 | t^{(i)} = 1, x^{(i)})\\
+		& = p(t^{(i)} = 1 | x^{(i)}) p(y^{(i)} = 1 | t^{(i)} = 1)
+	\end{aligned}
+	$$
+	
+	It turns out that $p(y^{(i)} = 1 | t^{(i)} = 1)$ is a constant since the dataset is distributed to a fixed distribution. So let $\alpha = p(y^{(i)} = 1 | t^{(i)} = 1)$, we obtain $p(t^{(i)} = 1 | x^{(i)}) = p(y^{(i)} = 1 | x^{(i)}) / \alpha$.
 \end{answer}
