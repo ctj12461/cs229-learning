@@ -1,2 +1,49 @@
 \begin{answer}
+	\begin{enumerate}
+		\item 
+		It turns out that the $i$-th element of $X\theta$ is the prediction given by $h_{\theta}(x^{(i)})$, and then $X\theta-y$ represents a column vector consists of all errors. Therefore we can let $W$ to be an diagonal matrix. Specifically,
+		
+		$$
+		W = \frac{1}{2}\begin{bmatrix}
+			w^{(1)} & & &\\
+			 & w^{(2)} & &\\
+			 & & \ddots & \\
+			 & & & w^{(m)}
+		\end{bmatrix}
+		$$,
+		
+		which satisfies $J(\theta)=(X\theta - y)^T W (X\theta - y)$.
+		
+		
+		
+		\item
+		$$
+		\begin{aligned}
+			\nabla_\theta J(\theta) & = \nabla_\theta (X\theta - y)^T W (X\theta - y)\\
+			& = \nabla_\theta (\theta^T X^T WX\theta - \theta^T X^T Wy - y^T WX \theta + y^T W y)\\
+			& = \nabla_\theta (\operatorname{tr} \theta^T X^T WX\theta - 2\operatorname{tr} y^T WX \theta)\\
+			& = 2X^T WX\theta - 2X^T W^T y\\
+			& = 2X^T WX\theta - 2X^T W y\\ 
+		\end{aligned}
+		$$
+		
+		Setting $\nabla_\theta J(\theta)$ to zero yields
+		
+		$$
+		X^T WX\theta = X^T W y \implies \theta = (X^T WX)^{-1} X^T Wy
+		$$
+		
+		
+		
+		\item
+		$$
+		\begin{aligned}
+			\ell(\theta) = & = \ln \prod_{i = 1}^m p(y^{(i)} | x^{(i)}; \theta)\\
+			& = \sum_{i = 1}^{m} (-\ln \sqrt{2\pi} \sigma^{(i)} - \frac{(y^{(i)} - \theta^T x^{(i)})^2}{2(\sigma^{(i)})^2})\\
+			& = -\sum_{i = 1}^{m} \ln \sqrt{2\pi} \sigma^{(i)} - \frac{1}{2} \sum_{i = 1}^{m} \frac{(y^{(i)} - \theta^T x^{(i)})^2}{(\sigma^{(i)})^2}
+		\end{aligned}
+		$$
+		
+		To maximize $\ell(\theta)$ is to minimize $\frac{1}{2} \sum_{i = 1}^{m} \frac{(y^{(i)} - \theta^T x^{(i)})^2}{(\sigma^{(i)})^2} = J(\theta)$. By comparing the coefficient, we conclude that $w^{(i)} = \frac{1}{(\sigma^{(i)})^2}$.
+	\end{enumerate}
 \end{answer}

@@ -1,2 +1,14 @@
 \begin{answer}
+	$$
+	\begin{aligned}
+		\frac{\partial}{\partial\eta} \int p(y;\eta) & = \int \frac{\partial}{\partial\eta} p(y;\eta) dy\\
+		& = \int \frac{\partial}{\partial\eta} b(y)\exp(\eta y - a(\eta)) dy\\
+		& = \int b(y) \exp(\eta y - a(\eta)) (y - a'(\eta)) dy\\
+		& = \int p(y; \eta)(y - a'(\eta)) dy\\
+		& = \mathrm E[Y - a'(\eta)]\\
+		& = 0
+	\end{aligned}
+	$$
+	
+	Therefore, $\mathrm E[Y | X; \theta] = \mathrm E[a'(\eta)] = a'(\eta)$.
 \end{answer}

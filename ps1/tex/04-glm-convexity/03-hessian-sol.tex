@@ -1,2 +1,41 @@
 \begin{answer}
+	$$
+	\begin{aligned}
+		\ell(\theta) & = -\ln \prod_{i = 1}^{m} p(y^{(i)}; \eta)\\
+		& = -\sum_{i = 1}^{m} \ln p(y^{(i)} | x^{(i)}; \theta)\\
+		& = -\sum_{i = 1}^{m} (\ln b(y) + \theta^T x^{(i)} y^{(i)} - a(\theta^T x^{(i)}))
+	\end{aligned}
+	$$
+	
+	Take the first derivative of $\ell(\theta)$ with respect to $\theta_j$:
+	
+	$$
+	\begin{aligned}
+		\frac{\partial}{\partial\theta_j} \ell(\theta) & = -\sum_{i = 1}^m (x^{(i)}_j y^{(i)} - a'(\theta^T x^{(i)}) x^{(i)})\\
+		& = -\sum_{i = 1}^m (y^{(i)} - a'(\theta^T x^{(i)})) x^{(i)}\\
+		& = \sum_{i = 1}^m (a'(\theta^T x^{(i)}) - y^{(i)}) x^{(i)}
+	\end{aligned}
+	$$
+
+	Take the second derivative of $\ell(\theta)$ with respect ot $\theta_k$:
+	
+	$$
+	\begin{aligned}
+		\frac{\partial^2}{\partial\theta_j\partial\theta_k} \ell(\theta) & = \frac{\partial}{\partial\theta_k} \sum_{i = 1}^m (a'(\theta^T x^{(i)}) - y^{(i)}) x^{(i)}\\
+		& = \sum_{i = 1}^m a''(\theta^T x^{(i)}) x^{(i)}_j x^{(i)}_k\\
+		& = \sum_{i = 1}^m \mathrm{Var}[Y | X; \theta] x^{(i)}_j x^{(i)}_k\\
+	\end{aligned}
+	$$
+	
+	For all $z \in \mathrm R^n$,
+	
+	$$
+	\begin{aligned}
+		z^T H z & = \sum_{j = 1}^n \sum_{k = 1}^n z_j z_k \sum_{i = 1}^m \mathrm{Var}[Y | X; \theta] x^{(i)}_j x^{(i)}_k\\
+		& = \sum_{i = 1}^m \mathrm{Var}[Y | X; \theta] \sum_{j = 1}^n x^{(i)}_j z_j \sum_{k = 1}^n x^{(i)}_k z_k\\
+		& = \sum_{i = 1}^m \mathrm{Var}[Y | X; \theta] (x^T z)^2 \ge 0
+	\end{aligned}
+	$$
+	
+	Therefore, the Hessian of $\ell(\theta)$ is Positive Semi-definite.
 \end{answer}

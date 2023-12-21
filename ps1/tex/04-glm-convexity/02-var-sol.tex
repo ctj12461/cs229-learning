@@ -1,2 +1,13 @@
 \begin{answer}
+	$$
+	\begin{aligned}
+		\frac{\partial}{\partial\eta} \mathrm E[Y | X; \theta] & = \frac{\partial}{\partial\eta} \int p(y; \eta) (y - a'(\eta)) dy\\
+		& = \int p(y; \eta)[(y - a'(\eta))^2 - a''(\eta)] dy\\
+		& = \int p(y; \eta)(y - a'(\eta))^2 dy - a''(\eta)\int dy\\
+		& = \mathrm{Var}[Y | X; \theta] - a''(\eta)\\
+		& = 0
+	\end{aligned}
+	$$
+	
+	Therefore, $\mathrm{Var}[Y | X; \theta] = a''(\eta)$.
 \end{answer}
