@@ -49,12 +49,12 @@ def main():
         from matplotlib import pyplot as plt
         plt.figure()
         Xa, Ya = util.load_csv('../data/ds1_a.csv', add_intercept=False)
-        Ya = (Ya == 1).astype(np.float)
+        Ya = (Ya == 1).astype(float)
         plot_points(Xa, Ya)
 
         plt.figure()
         Xb, Yb = util.load_csv('../data/ds1_b.csv', add_intercept=False)
-        Yb = (Yb == 1).astype(np.float)
+        Yb = (Yb == 1).astype(float)
         plot_points(Xb, Yb)
         plt.show()
         import sys

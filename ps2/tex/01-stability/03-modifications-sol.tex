@@ -1,2 +1,18 @@
 \begin{answer}
+	\begin{enumerate}
+		\item
+		No. Because the gradient decreases very slowly with a relatively large initial value, which means that it will take a long time before $\Delta\theta$ approaches to $10^{-15}$. To make $\theta$ converge faster by making $\Delta\theta$ small at first, a rather small learning rate should be used. But a small and unchanged learning rate will contributes to small change of $\theta$, far from a right $\theta$. In other word, this will lead to a underfit model.
+		
+		\item
+		Yes. By using this technique, $\Delta\theta$ will be limited by the number of iterations.
+		
+		\item 
+		No. Linear scaling will not change the relative positions of each examples, thus will not change the fact whether the dataset is linear separable or not.
+		
+		\item 
+		$\|\theta\|_2^2$ stops the original $J(\theta)$ decreasing continuous with $\theta$ changing.
+		
+		\item
+		According to the explanation in (b), adding zero-mean Gaussian noise can make the dataset linear inseparable and the training procedure converges faster.
+	\end{enumerate}
 \end{answer}
