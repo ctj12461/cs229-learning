@@ -8,7 +8,7 @@
   - [x] Locally Weighted Linear Regression
 - [ ] Problem Set 2
   - [x] Logistic Regression: Training Stability
-  - [ ] Model Calibration
+  - [x] Model Calibration
   - [ ] Bayesian Interpretation of Regularization
   - [ ] Constructing Kernels
   - [ ] Kernelizing the Perceptron

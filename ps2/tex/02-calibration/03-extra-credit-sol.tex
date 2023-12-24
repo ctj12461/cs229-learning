@@ -1,2 +1,11 @@
 \begin{answer}
+	After adding the $L_2$ regularization, the derivative of $J(\theta)$ with respect to $\theta_0$ is
+	
+	$$
+	\frac{\partial}{\partial \theta_0} J(\theta) = \sum_{i = 1}^{m} (h_{\theta}(x^{(i)}) - y^{(i)}) + \theta_0
+	$$
+	
+	If $\theta_0 = 0$, $\sum_{i = 1}^{m} h_{\theta}(x^{(i)}) = \sum_{i = 1}^{m} y^{(i)}$, and the conclusion we get in (a) is still correct.
+	
+	Otherwise, the property no longer holds true for the logistic regression when $(a,b)=(0,1)$.
 \end{answer}

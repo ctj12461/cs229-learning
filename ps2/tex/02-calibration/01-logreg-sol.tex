@@ -1,2 +1,33 @@
 \begin{answer}
+	After training the model on the given dataset, the parameter $\theta$ for the logistic regression ensures that $J(\theta)$ is the minimum. In other words, $\nabla J(\theta)=0$.
+	
+	So we have
+	
+	$$
+	\frac{\partial}{\partial \theta_0} J(\theta)=\sum_{i = 1}^{m} (h_{\theta}(x^{(i)}) - y^{(i)})x^{(i)}_0=0
+	$$
+	
+	Note that $x_0=1$, therefore,
+	
+	$$
+	\sum_{i = 1}^{m} h_{\theta}(x^{(i)}) = \sum_{i = 1}^{m} y^{(i)}
+	$$
+	
+	Given $(a,b)=(0, 1)$, every example is included $\{i\mid i\in I_{a,b}\}$, so $|\{i\mid i\in I_{a,b}\}|=m$, and the left and right hand side of the equation we're going to prove can be written as
+	
+	$$
+	\begin{aligned}
+		\frac{\sum_{i\in I_{a,b}}  P\left(y^{(i)}=1|x^{(i)};\theta\right)}
+		{{|\{i\in I_{a,b}\}|}} &= \frac{\sum_{i = 1}^{m} h_{\theta}(x^{(i)})}{m}\\
+		\frac{\sum_{i\in I_{a,b}} \mathbb{I}\{y^{(i)} = 1\}}{|\{i\in I_{a,b}\}|} &= \frac{\sum_{i = 1}^{m} y^{(i)}}{m}
+	\end{aligned}
+	$$
+	
+	Hence, 
+	$$
+	\frac{\sum_{i\in I_{a,b}}  P\left(y^{(i)}=1|x^{(i)};\theta\right)}
+	{{|\{i\in I_{a,b}\}|}}
+	= \frac{\sum_{i\in I_{a,b}} \mathbb{I}\{y^{(i)} = 1\}}
+	{|\{i\in I_{a,b}\}|}
+	$$
 \end{answer}
