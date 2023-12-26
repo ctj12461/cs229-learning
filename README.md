@@ -9,7 +9,7 @@
 - [ ] Problem Set 2
   - [x] Logistic Regression: Training Stability
   - [x] Model Calibration
-  - [ ] Bayesian Interpretation of Regularization
+  - [x] Bayesian Interpretation of Regularization
   - [ ] Constructing Kernels
   - [ ] Kernelizing the Perceptron
   - [ ] Spam Classification

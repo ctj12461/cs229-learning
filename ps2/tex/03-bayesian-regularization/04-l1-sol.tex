@@ -1,2 +1,20 @@
 \begin{answer}
+	$$
+	\begin{aligned}
+		\theta_{\text{MAP}} & = \arg\max_{\theta} p(y\mid x,\theta)\exp(-(bI)^{-1}|\theta|)\\
+		& = \arg\max_{\theta} \left(\sum_{i=1}^m \ln p(y^{(i)} | x^{(i)}, \theta) -\frac{1}{b}|\theta|\right)\\
+		& = \arg\min_{\theta} \left[(y - X\theta)^T(y - X\theta) + \frac{1}{b}|\theta|\right]\\
+		& = \arg\min_{\theta} \left(\|X\theta-y\|_2^2 + \frac{1}{b}\|\theta\|_1\right)
+	\end{aligned}
+	$$
+	
+	Hence,
+	
+	$$
+	J(\theta) = \|X\theta-y\|_2^2 + \lambda\|\theta\|_1\\
+	$$
+	
+	$$
+	\lambda = \frac{1}{b}
+	$$
 \end{answer}

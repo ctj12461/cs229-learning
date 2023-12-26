@@ -1,2 +1,23 @@
 \begin{answer}
+	Assume that $\theta\in \mathrm R^n$, Since $\theta\sim \mathcal N(0, \eta^2I)$,
+	
+	$$
+	\begin{aligned}
+		p(\theta) &=\frac{1}{(2\pi)^{n/2}|\eta^2I|^{1/2}}\exp\left(-\frac{1}{2}\theta^T(\eta^2I)^{-1}\theta\right)\\
+		&=\frac{1}{(2\pi)^{n/2}\eta^n}\exp\left(\frac{1}{2\eta^2}\theta^T\theta\right)
+	\end{aligned}
+	$$
+	
+	So $p(\theta)$ can be written as
+	
+	$$
+	\begin{aligned}
+		\theta_{\text{MAP}} & = \arg\max_{\theta} p(y\mid x,\theta)p(\theta)\\
+		& = \arg\max_{\theta} p(y\mid x,\theta) \frac{1}{(2\pi)^{n/2}\eta^n}\exp\left(-\frac{1}{2\eta^2}\theta^T\theta\right)\\
+		& = \arg\max_{\theta} \left(\ln p(y\mid x,\theta) - \frac{1}{2\eta^2}\theta^T\theta\right)\\
+		& = \arg\min_{\theta} \left(-\ln p(y\mid x, \theta) + \frac{1}{2\eta^2}\|\theta\|_2^2\right)
+	\end{aligned}
+	$$
+	
+	Note that $\lambda=\frac{1}{2\eta^2}$.
 \end{answer}

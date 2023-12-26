@@ -1,2 +1,27 @@
 \begin{answer}
+	$$
+	\begin{aligned}
+		\theta_{\text{MAP}} & = \arg\min_{\theta} \left(-\ln p(y\mid x, \theta) + \frac{1}{2\eta^2}\|\theta\|^2\right)\\
+		& = \arg\min_{\theta} \left(-\sum_{i = 1}^m \ln p(y^{(i)}\mid x^{(i)}, \theta) + \frac{1}{2\eta^2}\|\theta\|^2\right)\\
+		& = \arg\min_{\theta} \left[-\sum_{i = 1}^m \ln \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{y^{(i)} - \theta^Tx^{(i)}}{2\sigma^2}\right) + \frac{1}{2\eta^2}\|\theta\|^2\right]\\
+		& = \arg\min_{\theta} \left[\frac{1}{2\sigma^2} \sum_{i = 1}^m \left(y^{(i)} - \theta^Tx^{(i)}\right) + \frac{1}{2\eta^2}\|\theta\|^2 \right]\\
+		& = \arg\min_{\theta} \left[(y - X\theta)^T(y - X\theta) + \frac{\sigma^2}{\eta^2}\theta^T\theta\right]
+	\end{aligned}
+	$$
+	
+	Let $J(\theta) = (y - X\theta)^T(y - X\theta) + \frac{\sigma^2}{\eta^2}\theta^T\theta$, and take the derivative of $J(\theta)$
+	
+	$$
+	\begin{aligned}
+		\nabla_{\theta} J(\theta) & = \nabla_{\theta} \left(-2y^T X\theta + \theta^T X^T X\theta + \frac{\sigma^2}{\eta^2}\theta^T\theta\right)\\
+		& = \nabla_{\theta} \left[-2\operatorname{tr} y^T X\theta + \operatorname{tr} \theta^T X^T X\theta + \frac{\sigma^2}{\eta^2}\operatorname{tr}\theta^T\theta\right]\\
+		& = -2X^T y + 2X^T X \theta + \frac{\sigma^2}{\eta^2}\theta\\
+	\end{aligned}
+	$$
+	
+	Since $\theta_{\text{MAP}}=\arg\min_\theta J(\theta)$, $\nabla_{\theta} J(\theta_{\text{MAP}})=0$, hence,
+	
+	$$
+	\theta_{\text{MAP}} = 2\left(2X^T X + \frac{\sigma^2}{\eta^2}I\right)^{-1}X^T y
+	$$
 \end{answer}
