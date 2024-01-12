@@ -1,2 +1,93 @@
 \begin{answer}
+	\\
+	(a) Yes.
+	
+	Given any finite set $\{x^{(1)}, \ldots, x^{(m)}\}$, let $P_{ij} = K_1(x^{(i)}, x^{(j)})$, $Q_{ij} = K_2(x^{(i)}, x^{(j)})$ and $R_{ij} = K(x^{(i)}, x^{(j)})$ be $m$ by $m$ square matrices.
+	
+	So $P$ and $Q$ are positive semidefinite.
+	
+	Since $R_{ij} = P_{ij} + Q_{ij}$, $R$ is also Positive Semi-definite and $K(x, z)$ is a kernel.
+	
+	
+	
+	(b) No.
+	
+	Let's reuse the notations and symbols in (a). Now $R_{ij} = P_{ij} - Q_{ij}$. Note that for any $z\in \mathrm R^m$, $z^T P z\ge 0$ and $z^T Q z\ge 0$ don't imply that $z^T R z = z^T (P - Q) z \ge 0$, therefore $R$ is not positive semidefinite and $K(x, z)$ is not a kernel.
+	
+	
+	
+	(c) Yes.
+	
+	Apparently, for all $z\in \mathrm R^m$, $z^T (aP) z = a(z^T P z)\ge 0$, therefore $P$ is positive semidefinite and $K(x, z)$ is a kernel.
+	
+	
+	
+	(d) No.
+	
+	This case is similar to (c), but $-aP$ is negative semidefinite.
+	
+	
+	
+	(e) Yes.
+	
+	Let $\phi_1(x)$ and $\phi_2(x)$ be the mappings corresponding to $K_1$ and $K_2$, i.e. $K_1(x, z) = \phi_1(x)^T\phi_1(z), K_2(x, z) = \phi_2(x)^T\phi_2(z)$.
+	
+	For all $z$,
+	
+	$$
+	\begin{aligned}
+		z^T R z & = \sum_i \sum_j z_i z_j K_1(x^{(i)}, x^{(j)}) K_2(x^{(i)}, x^{(j)})\\
+		& = \sum_i \sum_j z_i z_j \left(\sum_k \phi_{1_k}(x^{(i)}) \phi_{1_k}(x^{(j)})\right) \left(\sum_l \phi_{2_l}(x^{(i)}) \phi_{2_l}(x^{(j)})\right)\\
+		& = \sum_k \sum_l \left(z_i \phi_{1_k}(x^{(i)}) \phi_{2_l}(x^{(i)}) \right) \left(z_j \phi_{1_k}(x^{(j)}) \phi_{2_l}(x^{(j)}) \right)\\
+		& = \sum_k \sum_l \left(z_i \phi_{1_k}(x^{(i)}) \phi_{2_l}(x^{(i)}) \right)^2\\
+		& \ge 0
+	\end{aligned}
+	$$
+	
+	So $R$ is positive semidefinite and $K$ is a valid kernel.
+	
+	(f) Yes.
+	
+	$$
+	w=\begin{bmatrix}
+		f(x^{(1)})\\
+		\vdots\\
+		f(x^{m})
+	\end{bmatrix}
+	$$
+	
+	 Hence,
+	 
+	 $$
+	 R=\begin{bmatrix}
+	 	f(x^{(1)})f(x^{(1)}) & \cdots & f(x^{(1)})f(x^{(m)})\\
+	 	\vdots & & \vdots\\
+	 	f(x^{(m)})f(x^{(1)}) & \cdots & f(x^{(m)})f(x^{(m)})
+	 \end{bmatrix}
+	 =w w^T
+	 $$
+	 
+	 For any $z\in \mathrm R^m$,
+	 
+	 $$
+	 z^T R z = z^T w w^T z = (w^T z)^T (w^T z) = (w^T z)^2 \ge 0 
+	 $$
+	 
+	 Therefore, $R$ is positive semidefinite and $K(x, z)$ is a kernel.
+	 
+	 
+	 
+	 (g) Yes.
+	 
+	 Since $K_3(x, z)$ is a kernel, a matrix $S$ whose entries are given by $S_ij = K_3(x^{(i)}, x^{(j)})$ for any finite set $\{x^{(1)}\ldots,x^{(m)}\}$ is positive semidefinite. This property also holds true for any finite set $\{\phi(x^{(1)})\ldots,\phi(x^{(m)})\}$, with its pattern similar to the former one. So $K(x, z) = K_3(\phi(x), \phi(z))$ is a kernel.
+	 
+	 
+	 
+	 (h) Yes.
+	 
+	 Say $p(x)=a_0 + a_1 x + a_2 x^2 + \cdots + a_k x^k$, with all coefficients positive.
+	 
+	 Given that $K_1(x, z)K_2(x, z)$ is a kernel if $K_1(x, z)$ and $K_2(x, z)$ are kernels, $(K_1(x, z))^p=(K_1(x, z))^{p-1}K_1(x, z)$ is a kernel if $(K_1(x, z))^{p-1}$ is a kernel. Now we can easily find that $(K_1(x, z))^p\ (p=1,\ldots,k)$ is a kernel.
+	 
+	 Using the properties from (a) and (c), $a_0 + a_1 K_1(x, z) + a_2 (K_1(x, z))^2 + \cdots + a_k (K_1(x, z))^k = p(K_1(x, z))$ is a kernel.
 \end{answer}

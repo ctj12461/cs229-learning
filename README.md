@@ -10,7 +10,7 @@
   - [x] Logistic Regression: Training Stability
   - [x] Model Calibration
   - [x] Bayesian Interpretation of Regularization
-  - [ ] Constructing Kernels
+  - [x] Constructing Kernels
   - [ ] Kernelizing the Perceptron
   - [ ] Spam Classification
 - [ ] Problem Set 3
