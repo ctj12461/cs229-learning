@@ -11,7 +11,7 @@
   - [x] Model Calibration
   - [x] Bayesian Interpretation of Regularization
   - [x] Constructing Kernels
-  - [ ] Kernelizing the Perceptron
+  - [x] Kernelizing the Perceptron
   - [ ] Spam Classification
 - [ ] Problem Set 3
   - [ ] A Simple Neural Network

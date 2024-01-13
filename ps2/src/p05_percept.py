@@ -14,6 +14,7 @@ def initial_state():
     """
 
     # *** START CODE HERE ***
+    return ([], [])
     # *** END CODE HERE ***
 
 def predict(state, kernel, x_i):
@@ -28,6 +29,12 @@ def predict(state, kernel, x_i):
         Returns the prediction (i.e 0 or 1)
     """
     # *** START CODE HERE ***
+    s = 0
+
+    for j in range(len(state[0])):
+        s += state[0][j] * kernel(x_i, state[1][j])
+    
+    return sign(s)
     # *** END CODE HERE ***
 
 def update_state(state, kernel, learning_rate, x_i, y_i):
@@ -41,6 +48,8 @@ def update_state(state, kernel, learning_rate, x_i, y_i):
         y_i: A 0 or 1 indicating the label for a single instance
     """
     # *** START CODE HERE ***
+    state[0].append(learning_rate * (y_i - predict(state, kernel, x_i)))
+    state[1].append(x_i)
     # *** END CODE HERE ***
 
 def sign(a):
@@ -97,7 +106,7 @@ def train_perceptron(kernel_name, kernel, learning_rate):
     plt.figure(figsize=(12, 8))
     util.plot_contour(lambda a: predict(state, kernel, a))
     util.plot_points(test_x, test_y)
-    plt.savefig('./output/p05_{}_output.pdf'.format(kernel_name))
+    plt.savefig('./output/p05_{}_output.png'.format(kernel_name))
 
     predict_y = [predict(state, kernel, test_x[i, :]) for i in range(test_y.shape[0])]
 

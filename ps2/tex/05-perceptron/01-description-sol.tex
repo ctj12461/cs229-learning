@@ -1,2 +1,64 @@
-\begin{answer}
+\begin{answer}\\
+	\begin{enumerate}
+		\item
+		
+		It's easy to find that $\theta$ is the linear combination of $x$'s. Instead of store all entries of $\theta$, we keep the coefficients $c$'s, i.e. $\theta^{(t)} = Xc^{(t)} = \sum_{i = 1}^m c^{(t)}_i x^{(i)}$.
+		
+		So the update rule without mapping $x$ to a high dimensional vector can be rewritten as
+		
+		$$
+		\begin{aligned}
+			\theta^{(t+1)} & := \theta^{(t)} + \alpha (y^{(t + 1)} - h_{\theta^{(t)}}(x^{(t + 1)})) x^{(t + 1)}\\
+			& = \sum_{i = 1}^m c^{(t)}_i x^{(i)} + \alpha \left(y^{(t + 1)} - g\left((\theta^{(t)})^T x^{(t + 1)}\right)\right) x^{(t + 1)}\\
+			& = \sum_{i = 1}^m c^{(t)}_i x^{(i)} + \alpha \left(y^{(t + 1)} - g\left(\sum_{i = 1}^m c^{(t)}_i (x^{(i)})^T x^{(t + 1)}\right)\right) x^{(t + 1)}\\
+			& = \sum_{i = 1}^m c^{(t)}_i x^{(i)} + \alpha \left(y^{(t + 1)} - g\left(\sum_{i = 1}^m c^{(t)}_i \langle x^{(i)}, x^{(t + 1)}\rangle\right)\right) x^{(t + 1)}\\
+		\end{aligned}
+		$$
+		
+		And $\theta^{0} = \sum_{i = 1}^m c^{(0)}_i x^{(i)} = 0$, so $c^{(0)}_i = 0$ for all $i \in [1, m]$.
+		
+		Then we obtain the update rule for $c^{(t)}_i$'s:
+		
+		$$
+		c^{(t + 1)}_i := \begin{cases}
+			c^{(t)}_i, & 1\le i\le t\\
+			\alpha\left(y^{(t + 1)} - g\left(\sum_{i = 1}^m c^{(t)}_i \langle x^{(i)}, x^{(t + 1)}\rangle\right)\right), & i = t + 1\\
+			0, & i > t + 1
+		\end{cases}
+		$$
+		
+		For $i\le t$, $c_i$ will be copied, and for $i > t + 1$, $c_i$ is still zero. Only $c_{i + 1}$ will be set to the value of an expression which only consists of $c_j$ where $j$ ranges from $1$ to $t$, in other words, $c_{i + 1}$ only relies on $c_j$'s calculated before.
+		
+		For convenience, we can remove the superscripts:
+		
+		$$
+		c_{t + 1} := \alpha\left(y^{(t + 1)} - g\left(\sum_{i = 1}^t c_i \langle x^{(i)}, x^{(t + 1)}\rangle\right)\right)
+		$$
+		
+		Here, $x^{(i)}$ can be replaced with $\phi(x^{(i)})$ to map $x^{(t)}$ to a high dimension space. Apparently, $c_i$'s don't depend on the actual representation of $x$'s or $\phi(x^{(i)})$'s, as long as we know how to calculate the inner product of two $\phi(x)$'s inexpensively, which is what a kernel does. Using $c_i$'s enables $\theta$ to be represented implicitly.
+		
+		
+		
+		\item 
+		
+		Given that $\theta^{t} = \sum_{i = 1}^m c_i x^{(i)}$,
+		
+		$$
+		\begin{aligned}
+			h_{\theta^{(t)}}(x^{(t + 1)}) & = g\left((\theta^{(i)})^T \phi(x^{(t + 1)})\right)\\
+			& = g\left(\sum_{i = 1}^t c_i \langle \phi(x^{(i)}), \phi(x^{(t + 1)})\rangle\right)\\
+			& = g\left(\sum_{i = 1}^t c_i K(x^{(i)}, x^{(t + 1)})\right)\\
+		\end{aligned}
+		$$
+		
+		
+		
+		\item 
+		
+		Just replace $x^{(i)}$ with $\phi(x^{(i)})$ and apply the kernel trick, and then we get the new update rule:
+		
+		$$
+		\theta^{(t+1)} := \theta^{(t)} + \alpha \left(y^{(t + 1)} - g\left(\sum_{i = 1}^t c^{(t)}_i K(x^{(i)}, x^{(t + 1)})\right)\right) \phi(x^{(t + 1)})\\
+		$$
+	\end{enumerate}
 \end{answer}
