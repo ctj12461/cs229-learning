@@ -5,6 +5,39 @@ import numpy as np
 import util
 import svm
 
+# *** START CODE HERE ***
+class NaiveBayesModel:
+    def __init__(self, dict_size):
+        self.dict_size = dict_size
+        self.msg_count = np.zeros(2)
+        self.word_count = np.zeros(2)
+        self.feature_count = np.zeros([2, dict_size])
+    
+    def add_msg(self, data, label):
+        self.msg_count[label] += 1
+        self.word_count[label] += np.sum(data)
+
+        for i in range(data.shape[0]):
+            self.feature_count[label][i] += data[i]
+    
+    def calc_category_prob(self, category):
+        return float(self.msg_count[category] + 1) / (np.sum(self.msg_count) + 2)
+    
+    def calc_feature_prob(self, feature, category):
+        return float(self.feature_count[category][feature] + 1) / (self.word_count[category] + self.dict_size)
+    
+    def predict(self, msg_data):
+        log_prob = np.zeros(2)
+
+        for c in range(2):
+            log_prob[c] += np.log(self.calc_category_prob(c))
+
+            for j in range(len(msg_data)):
+                log_prob[c] += msg_data[j] * np.log(self.calc_feature_prob(j, c))
+        
+        return np.argmax(log_prob)
+# *** END CODE HERE ***
+
 def get_words(message):
     """Get the normalized list of words from a message string.
 
@@ -40,6 +73,20 @@ def create_dictionary(messages):
     """
 
     # *** START CODE HERE ***
+    counts = {}
+    dictionary = {}
+    index = 0
+
+    for msg in messages:
+        for word in get_words(msg):
+            counts[word] = counts.get(word, 0) + 1
+    
+    for word, count in counts.items():
+        if count >= 5:
+            dictionary[word] = index
+            index += 1
+
+    return dictionary
     # *** END CODE HERE ***
 
 def transform_text(messages, word_dictionary):
@@ -60,6 +107,16 @@ def transform_text(messages, word_dictionary):
         A numpy array marking the words present in each message.
     """
     # *** START CODE HERE ***
+    arr = np.zeros([len(messages), len(word_dictionary)])
+
+    for i in range(len(messages)):
+        for word in get_words(messages[i]):
+            j = word_dictionary.get(word)
+
+            if j != None:
+                arr[i][j] += 1
+
+    return arr
     # *** END CODE HERE ***
 
 def fit_naive_bayes_model(matrix, labels):
@@ -79,6 +136,12 @@ def fit_naive_bayes_model(matrix, labels):
     """
 
     # *** START CODE HERE ***
+    model = NaiveBayesModel(matrix.shape[1])
+
+    for i in range(matrix.shape[0]):
+        model.add_msg(matrix[i, :], labels[i]);
+
+    return model
     # *** END CODE HERE ***
 
 def predict_from_naive_bayes_model(model, matrix):
@@ -91,9 +154,11 @@ def predict_from_naive_bayes_model(model, matrix):
         model: A trained model from fit_naive_bayes_model
         matrix: A numpy array containing word counts
 
-    Returns: The trained model
+    Returns: The predition result
     """
     # *** START CODE HERE ***
+    return [model.predict(counts) for counts in matrix]
+
     # *** END CODE HERE ***
 
 def get_top_five_naive_bayes_words(model, dictionary):
@@ -109,6 +174,19 @@ def get_top_five_naive_bayes_words(model, dictionary):
     Returns: The top five most indicative words in sorted order with the most indicative first
     """
     # *** START CODE HERE ***
+    def evaluate(word):
+        num = model.calc_feature_prob(word[1], 1)
+        den = model.calc_feature_prob(word[1], 0)
+        return np.log(num / den)
+
+    words = list(dictionary.items())
+    words.sort(key=evaluate, reverse=True)
+    res = []
+
+    for i in range(5):
+        res.append(words[i][0])
+    
+    return res
     # *** END CODE HERE ***
 
 def compute_best_svm_radius(train_matrix, train_labels, val_matrix, val_labels, radius_to_consider):
@@ -128,6 +206,22 @@ def compute_best_svm_radius(train_matrix, train_labels, val_matrix, val_labels, 
         The best radius which maximizes SVM accuracy.
     """
     # *** START CODE HERE ***
+    def evaluate(radius):
+        state = svm.svm_train(train_matrix, train_labels, radius)
+        preditions = svm.svm_predict(state, val_matrix, radius)
+        return float((preditions == val_labels).sum()) / len(val_labels)
+
+    best_radius = 0
+    best_accuracy = 0
+
+    for radius in radius_to_consider:
+        accuracy = evaluate(radius)
+
+        if accuracy > best_accuracy:
+            best_radius = radius
+            best_accuracy = accuracy
+    
+    return best_radius
     # *** END CODE HERE ***
 
 def main():

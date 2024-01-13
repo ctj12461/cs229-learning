@@ -6,13 +6,13 @@
   - [x] Poisson Regression
   - [x] Convexity of Generalized Linear Models
   - [x] Locally Weighted Linear Regression
-- [ ] Problem Set 2
+- [x] Problem Set 2
   - [x] Logistic Regression: Training Stability
   - [x] Model Calibration
   - [x] Bayesian Interpretation of Regularization
   - [x] Constructing Kernels
   - [x] Kernelizing the Perceptron
-  - [ ] Spam Classification
+  - [x] Spam Classification
 - [ ] Problem Set 3
   - [ ] A Simple Neural Network
   - [ ] KL Divergence and Maximum Likelihood
